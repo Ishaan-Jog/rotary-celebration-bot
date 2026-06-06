@@ -7,6 +7,7 @@ import json
 from google.oauth2.service_account import Credentials
 from dotenv import load_dotenv
 from google_drive import download_photo
+from poster_generator import generate_poster
 from template_renderer import render_template
 from html_to_png import generate_png
 from whatsapp_sender import send_image
@@ -106,15 +107,22 @@ def process_row(row, event_date):
         f"photos/{name}.jpg"
     )
 
-    html_file = render_template(
-        name=name,
-        photo_path=photo_path,
-        event_type=event_type,
-        date=event_date
+    event_date = pd.to_datetime(
+        event_date,
+        dayfirst=True
     )
 
-    png_file = asyncio.run(
-        generate_png(html_file)
+    png_file = generate_poster(
+        event_type=row[
+            "Select the event type"
+        ],
+        name=row[
+            "What is the name of the person being celebrated?"
+        ],
+        date=event_date.strftime(
+            "%d %B"
+        ),
+        photo_path=photo_path
     )
 
     send_image(

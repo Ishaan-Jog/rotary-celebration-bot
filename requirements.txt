@@ -1,12 +1,11 @@
-playwright
 gspread
 oauth2client
 google-api-python-client
 google-auth
 jinja2
-playwright
 python-dotenv
 requests
 pandas
 Flask
 gunicorn
+Pillow
