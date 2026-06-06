@@ -105,7 +105,7 @@ def send_image(
             media_id,
 
             "caption":
-            "🎉 Happy Birthday 🎉"
+            ""
         }
     }
 
