@@ -1,0 +1,11 @@
+.env
+
+credentials.json
+
+photos/
+
+generated/
+
+__pycache__/
+
+*.pyc
