@@ -8,8 +8,6 @@ from google.oauth2.service_account import Credentials
 from dotenv import load_dotenv
 from google_drive import download_photo
 from poster_generator import generate_poster
-from template_renderer import render_template
-from html_to_png import generate_png
 from whatsapp_sender import send_image
 
 load_dotenv()
