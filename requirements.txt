@@ -7,4 +7,5 @@ playwright
 python-dotenv
 requests
 pandas
-flask
+Flask
+gunicorn
