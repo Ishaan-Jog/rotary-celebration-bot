@@ -1,14 +1,11 @@
 import asyncio
-import os
-
 from datetime import datetime
-
 import pandas as pd
 import gspread
-
+import os
+import json
+from google.oauth2.service_account import Credentials
 from dotenv import load_dotenv
-from oauth2client.service_account import ServiceAccountCredentials
-
 from google_drive import download_photo
 from template_renderer import render_template
 from html_to_png import generate_png
@@ -30,10 +27,22 @@ def get_sheet_data():
         "https://www.googleapis.com/auth/drive"
     ]
 
-    creds = ServiceAccountCredentials.from_json_keyfile_name(
-        "credentials.json",
-        scope
-    )
+    if os.path.exists("credentials.json"):
+        # Local development
+        creds = Credentials.from_service_account_file(
+            "credentials.json",
+            scopes=scope
+        )
+    else:
+        # Render deployment
+        creds_dict = json.loads(
+            os.environ["GOOGLE_CREDS"]
+        )
+
+        creds = Credentials.from_service_account_info(
+            creds_dict,
+            scopes=scope
+        )
 
     client = gspread.authorize(creds)
 

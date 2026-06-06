@@ -19,7 +19,7 @@ async def generate_png(html_file):
         )
 
         await page.goto(
-            f"file://{html_path}"
+            html_path.as_uri()
         )
 
         await page.screenshot(
