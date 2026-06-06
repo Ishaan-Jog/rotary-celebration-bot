@@ -81,7 +81,7 @@ def is_today(date_value):
         return False
 
 
-def process_row(row):
+def process_row(row, event_date):
 
     name = row[
         "What is the name of the person being celebrated?"
@@ -109,7 +109,8 @@ def process_row(row):
     html_file = render_template(
         name=name,
         photo_path=photo_path,
-        event_type=event_type
+        event_type=event_type,
+        date=event_date
     )
 
     png_file = asyncio.run(
@@ -150,7 +151,7 @@ def main():
 
         if is_today(event_date):
 
-            process_row(row)
+            process_row(row, event_date)
 
 
 if __name__ == "__main__":

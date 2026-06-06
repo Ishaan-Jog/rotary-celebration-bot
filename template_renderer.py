@@ -1,12 +1,14 @@
 from jinja2 import Environment
 from jinja2 import FileSystemLoader
 import os
+from datetime import datetime
 
 
 def render_template(
     name,
     photo_path,
-    event_type
+    event_type,
+    date
 ):
 
     env = Environment(
@@ -27,7 +29,8 @@ def render_template(
         name=name,
         photo_url=photo_path,
         phrase=phrase,
-        event_type=event_type
+        event_type=event_type,
+        date=date
     )
 
     output_file = (
