@@ -129,6 +129,16 @@ def process_row(row, event_date):
 
 def main():
 
+    os.makedirs(
+        "photos",
+        exist_ok=True
+    )
+
+    os.makedirs(
+        "generated",
+        exist_ok=True
+    )
+
     print(
         "Checking today's events..."
     )
