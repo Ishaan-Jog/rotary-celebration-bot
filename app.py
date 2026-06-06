@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
+    main()
     return "Bot is running"
 
 @app.route("/run-daily")
