@@ -8,7 +8,7 @@ from google.oauth2 import service_account
 import io
 import re
 
-from httplib2 import Credentials
+from google.oauth2.service_account import Credentials
 
 
 SCOPES = [
