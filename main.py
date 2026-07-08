@@ -16,7 +16,7 @@ DEFAULT_RECIPIENT = os.getenv(
     "RECIPIENT_PHONE"
 )
 
-SHEET_NAME = os.getenv("SHEET_NAME")
+SPREADSHEET_ID = os.getenv("SPREADSHEET_ID")
 
 
 def get_sheet_data():
@@ -42,8 +42,8 @@ def get_sheet_data():
 
     client = gspread.authorize(creds)
 
-    sheet = client.open(
-        SHEET_NAME
+    sheet = client.open_by_key(
+        SPREADSHEET_ID
     ).sheet1
 
     records = sheet.get_all_records()
