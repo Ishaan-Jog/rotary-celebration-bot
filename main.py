@@ -21,26 +21,23 @@ SHEET_NAME = os.getenv("SHEET_NAME")
 
 def get_sheet_data():
 
-    scope = [
+    SCOPES = [
         "https://spreadsheets.google.com/feeds",
         "https://www.googleapis.com/auth/drive"
     ]
 
     if os.path.exists("credentials.json"):
-        # Local development
         creds = Credentials.from_service_account_file(
             "credentials.json",
-            scopes=scope
+            scopes=SCOPES
         )
     else:
-        # Render deployment
-        creds_dict = json.loads(
-            os.environ["GOOGLE_CREDS"]
-        )
 
         creds = Credentials.from_service_account_info(
-            creds_dict,
-            scopes=scope
+            json.loads(
+                os.environ["GOOGLE_CREDS"]
+            ),
+            scopes=SCOPES
         )
 
     client = gspread.authorize(creds)

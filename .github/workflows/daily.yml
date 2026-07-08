@@ -1,0 +1,38 @@
+name: Rotary Celebration Bot
+
+on:
+
+  schedule:
+
+    # 8:30 AM IST
+    - cron: "0 3 * * *"
+
+  workflow_dispatch:
+
+jobs:
+
+  run:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install packages
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run bot
+        env:
+          GOOGLE_CREDS: ${{ secrets.GOOGLE_CREDS }}
+          WHATSAPP_TOKEN: ${{ secrets.WHATSAPP_TOKEN }}
+          PHONE_ID: ${{ secrets.PHONE_ID }}
+          DEFAULT_RECIPIENT: ${{ secrets.DEFAULT_RECIPIENT }}
+          SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
+
+        run: python main.py
