@@ -4,8 +4,8 @@ on:
 
   schedule:
 
-    # 8:30 AM IST
-    - cron: "0 3 * * *"
+    # 5 AM IST
+    - cron: "30 23 * * *"
 
   workflow_dispatch:
 
